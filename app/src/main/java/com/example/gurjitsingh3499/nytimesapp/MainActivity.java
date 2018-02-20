@@ -53,16 +53,26 @@ public class MainActivity extends AppCompatActivity {
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 int response = connection.getResponseCode(); // Response Code from the HTTP Connection -- like 404
                 Log.d(TAG, "downLoadXML: The response code is " +response);
-//                InputStream inputStream = connection.getInputStream();
-//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//                BufferedReader reader = new BufferedReader(inputStreamReader);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                int charsRead;
+                char[] inputBuffer = new char[1000];
+                while(true){
+                    charsRead = reader.read(inputBuffer);
+                    if(charsRead < 0){
+                        break;
+                    }
+                    if(charsRead > 0) {
+                        xmlResult.append(String.copyValueOf(inputBuffer, 0, charsRead)); //chars read represent the length of the charRead Object
+                    }
+                }
+                reader.close();
             } catch(MalformedURLException e){
                 Log.e(TAG, "downLoadXML: Invalid URL " +e.getMessage());
             } catch (IOException e) {
                 Log.e(TAG, "downLoadXML: IOException "+ e.getMessage());
             }
-            return null;
+            return null; // prevent Android Studio from throwing errors
         }
 
 
