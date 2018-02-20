@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
 
                 return xmlResult.toString(); // casts the char array to string
             } catch(MalformedURLException e){
-                Log.e(TAG, "downLoadXML: Invalid URL " +e.getMessage());
+                e.printStackTrace();
             } catch (IOException e) {
-                Log.e(TAG, "downLoadXML: IOException "+ e.getMessage());
+                e.printStackTrace();
             }
             return null; // prevent Android Studio from throwing errors
         }
