@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 reader.close(); //Will close the stream reader and the source
+
+                return xmlResult.toString(); // casts the char array to string
             } catch(MalformedURLException e){
                 Log.e(TAG, "downLoadXML: Invalid URL " +e.getMessage());
             } catch (IOException e) {
