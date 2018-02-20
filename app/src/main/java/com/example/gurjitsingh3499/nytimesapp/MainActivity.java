@@ -24,15 +24,16 @@ public class MainActivity extends AppCompatActivity {
     private class DownloadData extends AsyncTask<String, Void, String> { //Use Void because we will not be using it
         private static final String TAG = "DownloadData";
         @Override
+        protected String doInBackground(String... strings) {
+            Log.d(TAG, "doInBackground: starts with "+strings[0]); // debug log
+            return "doInBackground completed.";
+        }
+        @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Log.d(TAG, "onPostExecute: parameter is "+s); //debug log
         }
 
-        @Override
-        protected String doInBackground(String... strings) {
-            Log.d(TAG, "doInBackground: starts with "+strings[0]); // debug log 
-            return "doInBackground completed.";
-        }
+
     }
 }
