@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(TAG, "onCreate: starting Async task");
         DownloadData downloadData = new DownloadData();
-        downloadData.execute("URL GOES HERE");
+        downloadData.execute("http://rss.nytimes.com/services/xml/rss/nyt/World.xml");
         Log.d(TAG, "onCreate: finished Async Task");
     }
 
