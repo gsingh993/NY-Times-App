@@ -50,12 +50,9 @@ public class FeedEntry {
 
     @Override
     public String toString() {
-        return "FeedEntry{" +
-                "name='" + name + '\'' +
-                ", author='" + author + '\'' +
-                ", pubDate='" + pubDate + '\'' +
-                ", summary='" + summary + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                '}';
+        return "name=" + name + '\n' +
+                ", author=" + author + '\n' +
+                ", pubDate=" + pubDate + '\n' +
+                ", imageUrl=" + imageUrl + '\n';
     }
 }
