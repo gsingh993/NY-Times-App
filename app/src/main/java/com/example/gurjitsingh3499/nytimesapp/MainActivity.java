@@ -1,9 +1,17 @@
 package com.example.gurjitsingh3499.nytimesapp;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity"; //logging
@@ -26,12 +34,35 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             Log.d(TAG, "doInBackground: starts with "+strings[0]); // debug log
-            return "doInBackground completed.";
+            String rssFeed = downLoadXML(strings[0]);
+            if(rssFeed == null){
+                Log.e(TAG, "doInBackground: error downloading the rss feed"); // loge for an actually error, so it remains in the production app
+            }
+            return rssFeed;
         }
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Log.d(TAG, "onPostExecute: parameter is "+s); //debug log
+        }
+
+        private String downLoadXML(String urlPath) {
+            StringBuilder xmlResult = new StringBuilder();
+
+            try{
+                URL url = new URL(urlPath); // Invoking the URL Class to create a new URL
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                int response = connection.getResponseCode(); // Response Code from the HTTP Connection -- like 404
+                Log.d(TAG, "downLoadXML: The response code is " +response);
+                InputStream inputStream = connection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader reader = new BufferedReader(inputStreamReader);
+            } catch(MalformedURLException e){
+                Log.e(TAG, "downLoadXML: Invalid URL " +e.getMessage());
+            } catch (IOException e) {
+                Log.e(TAG, "downLoadXML: IOException "+ e.getMessage());
+            }
+            return null;
         }
 
 
