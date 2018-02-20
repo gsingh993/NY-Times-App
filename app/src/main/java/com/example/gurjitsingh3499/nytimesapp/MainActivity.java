@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         xmlResult.append(String.copyValueOf(inputBuffer, 0, charsRead)); //chars read represent the length of the charRead Object
                     }
                 }
-                reader.close();
+                reader.close(); //Will close the stream reader and the source
             } catch(MalformedURLException e){
                 Log.e(TAG, "downLoadXML: Invalid URL " +e.getMessage());
             } catch (IOException e) {
