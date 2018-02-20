@@ -47,4 +47,15 @@ public class FeedEntry {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    @Override
+    public String toString() {
+        return "FeedEntry{" +
+                "name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", pubDate='" + pubDate + '\'' +
+                ", summary='" + summary + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
 }
