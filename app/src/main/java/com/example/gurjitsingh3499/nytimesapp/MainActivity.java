@@ -7,7 +7,6 @@ import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -54,9 +53,10 @@ public class MainActivity extends AppCompatActivity {
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 int response = connection.getResponseCode(); // Response Code from the HTTP Connection -- like 404
                 Log.d(TAG, "downLoadXML: The response code is " +response);
-                InputStream inputStream = connection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader reader = new BufferedReader(inputStreamReader);
+//                InputStream inputStream = connection.getInputStream();
+//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//                BufferedReader reader = new BufferedReader(inputStreamReader);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             } catch(MalformedURLException e){
                 Log.e(TAG, "downLoadXML: Invalid URL " +e.getMessage());
             } catch (IOException e) {
