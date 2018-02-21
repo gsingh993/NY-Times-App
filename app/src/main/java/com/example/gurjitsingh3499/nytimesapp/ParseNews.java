@@ -26,6 +26,7 @@ public class ParseNews {
         FeedEntry currentRecord = null;
         boolean inEntry = false;
         String textValue = "";
+        boolean gotImage = false;
 
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
@@ -37,7 +38,7 @@ public class ParseNews {
                 String tagName = xpp.getName();
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
-                       Log.d(TAG, "parse: Starting tag for " + tagName);
+                       // Log.d(TAG, "parse: Starting tag for " + tagName);
                         if ("item".equalsIgnoreCase(tagName)) {
                             inEntry = true;
                             currentRecord = new FeedEntry();
@@ -49,7 +50,7 @@ public class ParseNews {
                         break;
 
                     case XmlPullParser.END_TAG:
-                      Log.d(TAG, "parse: Ending tag for" + tagName);
+                        //Log.d(TAG, "parse: Ending tag for" + tagName);
                         if (inEntry) {
                             if ("item".equalsIgnoreCase(tagName)) {
                                 news.add(currentRecord);
@@ -63,6 +64,7 @@ public class ParseNews {
                             } else if ("description".equalsIgnoreCase(tagName)) {
                                 currentRecord.setSummary(textValue);
                             } else if ("content".equalsIgnoreCase(tagName)) {
+                                Log.i(TAG, "parse: "+ textValue);
                                 currentRecord.setImageUrl(textValue);
                             }
                         }
@@ -73,7 +75,7 @@ public class ParseNews {
                 }
                 eventType = xpp.next();
             }
-            for(FeedEntry news: news){
+            for (FeedEntry news : news) {
                 Log.d(TAG, "****************************");
                 Log.i(TAG, news.toString());
             }
