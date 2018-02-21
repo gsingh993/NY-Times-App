@@ -30,7 +30,7 @@ public class ParseNews {
 
         try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            factory.setNamespaceAware(true);
+            factory.setNamespaceAware(false);
             XmlPullParser xpp = factory.newPullParser();
             xpp.setInput(new StringReader(xmlData));
             int eventType = xpp.getEventType();
@@ -57,15 +57,12 @@ public class ParseNews {
                                 inEntry = false;
                             } else if ("title".equalsIgnoreCase(tagName)) {
                                 currentRecord.setName(textValue);
-                            } else if ("credit".equalsIgnoreCase(tagName)) {
+                            } else if ("link".equalsIgnoreCase(tagName)) {
                                 currentRecord.setAuthor(textValue);
                             } else if ("pubdate".equalsIgnoreCase(tagName)) {
                                 currentRecord.setPubDate(textValue);
                             } else if ("description".equalsIgnoreCase(tagName)) {
                                 currentRecord.setSummary(textValue);
-                            } else if ("content".equalsIgnoreCase(tagName)) {
-                                Log.i(TAG, "parse: "+ textValue);
-                                currentRecord.setImageUrl(textValue);
                             }
                         }
                         break;
