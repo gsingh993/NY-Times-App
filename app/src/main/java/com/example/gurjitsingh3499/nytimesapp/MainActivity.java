@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Log.d(TAG, "onPostExecute: parameter is "+s); //debug log
+            ParseNews parseNews = new ParseNews();
+            parseNews.parse(s);
         }
 
         private String downLoadXML(String urlPath) {

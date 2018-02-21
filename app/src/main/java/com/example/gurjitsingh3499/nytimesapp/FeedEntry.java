@@ -52,6 +52,7 @@ public class FeedEntry {
     public String toString() {
         return "name=" + name + '\n' +
                 ", author=" + author + '\n' +
+                ", summary=" + summary + '\n' +
                 ", pubDate=" + pubDate + '\n' +
                 ", imageUrl=" + imageUrl + '\n';
     }

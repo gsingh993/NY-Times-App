@@ -1,6 +1,8 @@
 package com.example.gurjitsingh3499.nytimesapp;
 
 
+import android.util.Log;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -19,23 +21,64 @@ public class ParseNews {
         return news;
     }
 
-    public boolean parse(String xmlData){
+    public boolean parse(String xmlData) {
         boolean status = true;
-        FeedEntry currentRecord;
+        FeedEntry currentRecord = null;
         boolean inEntry = false;
         String textValue = "";
 
-        try{
+        try {
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
             XmlPullParser xpp = factory.newPullParser();
             xpp.setInput(new StringReader(xmlData));
             int eventType = xpp.getEventType();
-            while(eventType != XmlPullParser.END_DOCUMENT){
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                String tagName = xpp.getName();
+                switch (eventType) {
+                    case XmlPullParser.START_TAG:
+                       Log.d(TAG, "parse: Starting tag for " + tagName);
+                        if ("item".equalsIgnoreCase(tagName)) {
+                            inEntry = true;
+                            currentRecord = new FeedEntry();
+                        }
+                        break;
 
+                    case XmlPullParser.TEXT:
+                        textValue = xpp.getText();
+                        break;
+
+                    case XmlPullParser.END_TAG:
+                      Log.d(TAG, "parse: Ending tag for" + tagName);
+                        if (inEntry) {
+                            if ("item".equalsIgnoreCase(tagName)) {
+                                news.add(currentRecord);
+                                inEntry = false;
+                            } else if ("title".equalsIgnoreCase(tagName)) {
+                                currentRecord.setName(textValue);
+                            } else if ("credit".equalsIgnoreCase(tagName)) {
+                                currentRecord.setAuthor(textValue);
+                            } else if ("pubdate".equalsIgnoreCase(tagName)) {
+                                currentRecord.setPubDate(textValue);
+                            } else if ("description".equalsIgnoreCase(tagName)) {
+                                currentRecord.setSummary(textValue);
+                            } else if ("content".equalsIgnoreCase(tagName)) {
+                                currentRecord.setImageUrl(textValue);
+                            }
+                        }
+                        break;
+
+                    default:
+                        //Nothing to do
+                }
+                eventType = xpp.next();
+            }
+            for(FeedEntry news: news){
+                Log.d(TAG, "****************************");
+                Log.i(TAG, news.toString());
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             status = false;
             e.printStackTrace();
         }
