@@ -63,7 +63,7 @@ public class ParseNews {
                                 currentRecord.setPubDate(textValue);
                             } else if ("description".equalsIgnoreCase(tagName)) {
                                 currentRecord.setSummary(textValue);
-                            } else if ("media:content".equalsIgnoreCase(tagName)){
+                            } else if ("media:description".equalsIgnoreCase(tagName)){
                                 Log.i(TAG, "parse: "+textValue.toString());
                                 currentRecord.setImageUrl(textValue);
                             }
