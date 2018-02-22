@@ -57,12 +57,15 @@ public class ParseNews {
                                 inEntry = false;
                             } else if ("title".equalsIgnoreCase(tagName)) {
                                 currentRecord.setName(textValue);
-                            } else if ("link".equalsIgnoreCase(tagName)) {
+                            } else if ("dc:creator".equalsIgnoreCase(tagName)) {
                                 currentRecord.setAuthor(textValue);
                             } else if ("pubdate".equalsIgnoreCase(tagName)) {
                                 currentRecord.setPubDate(textValue);
                             } else if ("description".equalsIgnoreCase(tagName)) {
                                 currentRecord.setSummary(textValue);
+                            } else if ("media:content".equalsIgnoreCase(tagName)){
+                                Log.i(TAG, "parse: "+textValue.toString());
+                                currentRecord.setImageUrl(textValue);
                             }
                         }
                         break;
