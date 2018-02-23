@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
@@ -49,8 +48,9 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onPostExecute: parameter is "+s); //debug log
             ParseNews parseNews = new ParseNews();
             parseNews.parse(s);
-            ArrayAdapter<FeedEntry> arrayAdapter = new ArrayAdapter<FeedEntry>(MainActivity.this, R.layout.list_item, parseNews.getNews());
-            listView.setAdapter(arrayAdapter);
+           // ArrayAdapter<FeedEntry> arrayAdapter = new ArrayAdapter<FeedEntry>(MainActivity.this, R.layout.list_item, parseNews.getNews());
+            FeedAdapter adapter = new FeedAdapter(MainActivity.this, R.layout.list_item, parseNews.getNews());
+            listView.setAdapter(adapter);
         }
 
         private String downLoadXML(String urlPath) {
