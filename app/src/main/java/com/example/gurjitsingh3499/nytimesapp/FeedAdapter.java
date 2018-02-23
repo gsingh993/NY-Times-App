@@ -1,7 +1,6 @@
 package com.example.gurjitsingh3499.nytimesapp;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +19,8 @@ public class FeedAdapter extends ArrayAdapter {
     private final LayoutInflater layoutInflater;
     private List<FeedEntry> news;
 
-    public FeedAdapter(Context context, int resource, List<FeedEntry> news){
-        super(context,resource);
+    public FeedAdapter(Context context, int resource, List<FeedEntry> news) {
+        super(context, resource);
         this.layoutResource = resource;
         this.layoutInflater = LayoutInflater.from(context);
         this.news = news;
@@ -31,17 +30,21 @@ public class FeedAdapter extends ArrayAdapter {
     public int getCount() {
         return news.size();
     }
-    @NonNull
+
     @Override
-    public View getView(int position, @NonNull View convertView, @NonNull ViewGroup parent) {
-        View view = layoutInflater.inflate(layoutResource,parent,false);
-        TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-        TextView tvAuthor = (TextView) view.findViewById(R.id.tvAuthor);
-        TextView tvPubDate = (TextView) view.findViewById(R.id.tvPubDate);
-        TextView tvSummary = (TextView) view.findViewById(R.id.tvSummary);
-        TextView tvSummary2 = (TextView) view.findViewById(R.id.tvSummary2);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(layoutResource, parent, false);
+        }
+        TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
+        TextView tvAuthor = (TextView) convertView.findViewById(R.id.tvAuthor);
+        TextView tvPubDate = (TextView) convertView.findViewById(R.id.tvPubDate);
+        TextView tvSummary = (TextView) convertView.findViewById(R.id.tvSummary);
+        TextView tvSummary2 = (TextView) convertView.findViewById(R.id.tvSummary2);
 
         FeedEntry currentNews = news.get(position);
+
+        //        FeedEntry currentNews = news.get(position);
 
         tvTitle.setText(currentNews.getName());
         tvAuthor.setText(currentNews.getAuthor());
@@ -49,6 +52,26 @@ public class FeedAdapter extends ArrayAdapter {
         tvSummary.setText(currentNews.getSummary());
         tvSummary2.setText(currentNews.getImageUrl());
 
-        return view;
+        return convertView;
     }
+//    @NonNull
+//    @Override
+//    public View getView(int position, @NonNull View convertView, @NonNull ViewGroup parent) {
+//        View view = layoutInflater.inflate(layoutResource,parent,false);
+//        TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
+//        TextView tvAuthor = (TextView) convertView.findViewById(R.id.tvAuthor);
+//        TextView tvPubDate = (TextView) convertView.findViewById(R.id.tvPubDate);
+//        TextView tvSummary = (TextView) convertView.findViewById(R.id.tvSummary);
+//        TextView tvSummary2 = (TextView) convertView.findViewById(R.id.tvSummary2);
+//
+//        FeedEntry currentNews = news.get(position);
+//
+//        tvTitle.setText(currentNews.getName());
+//        tvAuthor.setText(currentNews.getAuthor());
+//        tvPubDate.setText(currentNews.getPubDate());
+//        tvSummary.setText(currentNews.getSummary());
+//        tvSummary2.setText(currentNews.getImageUrl());
+//
+//        return view;
+//    }
 }

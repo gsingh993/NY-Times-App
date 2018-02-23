@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             ParseNews parseNews = new ParseNews();
             parseNews.parse(s);
            // ArrayAdapter<FeedEntry> arrayAdapter = new ArrayAdapter<FeedEntry>(MainActivity.this, R.layout.list_item, parseNews.getNews());
-            FeedAdapter adapter = new FeedAdapter(MainActivity.this, R.layout.list_item, parseNews.getNews());
+            FeedAdapter adapter = new FeedAdapter(MainActivity.this, R.layout.list_record, parseNews.getNews());
             listView.setAdapter(adapter);
         }
 
