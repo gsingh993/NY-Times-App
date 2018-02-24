@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
@@ -23,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.newXML);
 
-
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        //imageView.animate().setStartDelay(0).alpha(1).setDuration(2000);
+        imageView.animate().setStartDelay(0).alpha(0).setDuration(2000);
 
         Log.d(TAG, "onCreate: starting Async task");
         DownloadData downloadData = new DownloadData();
