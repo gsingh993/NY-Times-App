@@ -15,16 +15,13 @@
 
 ### Screenshots 
 ![Imgur](https://i.imgur.com/fMN8p8cm.png) .. ![Imgur](https://i.imgur.com/LTrePhvm.png) .. ![Imgur](https://i.imgur.com/xm7pLljm.png)
-
-Currently Working on Improving the UI
-
-##Phase 2 
-
-#Animations 
-
-#Landing Screen 
-
+## Animations 
+### Landing Page 
 ![Imgur](https://i.imgur.com/zxYk0qd.png)
+
+
+
+
 
 
 
