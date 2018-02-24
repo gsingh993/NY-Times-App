@@ -54,24 +54,5 @@ public class FeedAdapter extends ArrayAdapter {
 
         return convertView;
     }
-//    @NonNull
-//    @Override
-//    public View getView(int position, @NonNull View convertView, @NonNull ViewGroup parent) {
-//        View view = layoutInflater.inflate(layoutResource,parent,false);
-//        TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-//        TextView tvAuthor = (TextView) convertView.findViewById(R.id.tvAuthor);
-//        TextView tvPubDate = (TextView) convertView.findViewById(R.id.tvPubDate);
-//        TextView tvSummary = (TextView) convertView.findViewById(R.id.tvSummary);
-//        TextView tvSummary2 = (TextView) convertView.findViewById(R.id.tvSummary2);
-//
-//        FeedEntry currentNews = news.get(position);
-//
-//        tvTitle.setText(currentNews.getName());
-//        tvAuthor.setText(currentNews.getAuthor());
-//        tvPubDate.setText(currentNews.getPubDate());
-//        tvSummary.setText(currentNews.getSummary());
-//        tvSummary2.setText(currentNews.getImageUrl());
-//
-//        return view;
-//    }
+
 }

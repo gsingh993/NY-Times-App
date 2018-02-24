@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.newXML);
 
+
+
         Log.d(TAG, "onCreate: starting Async task");
         DownloadData downloadData = new DownloadData();
         downloadData.execute("http://rss.nytimes.com/services/xml/rss/nyt/World.xml");
