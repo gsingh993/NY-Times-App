@@ -18,7 +18,13 @@
 
 Currently Working on Improving the UI
 
+##Phase 2 
 
+#Animations 
+
+#Landing Screen 
+
+![Imgur](https://i.imgur.com/zxYk0qd.png)
 
 
 
